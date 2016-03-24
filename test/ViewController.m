@@ -69,5 +69,9 @@
    [center scheduleNotification:notification];
 }
 
+- (void)logMessage:(NSString*)message {
+    _eventLog.stringValue = message;
+}
+
 
 @end

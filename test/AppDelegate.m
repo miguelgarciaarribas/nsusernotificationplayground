@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
 #import "CommonDefinitions.h"
 
 //#import "_NSUserNotificationCenterDelegatePrivate.h"
@@ -63,15 +64,27 @@ struct InternalFrames {
     NSLog(@"activated called type %ld", (long) notification.activationType);
     NSLog(@"Multiple items? %@", [notification valueForKey:@"_alwaysShowAlternateActionMenu"]);
     NSLog(@"activated index %@", [notification valueForKey:@"_alternateActionIndex"]);
+
+    NSNumber* display_style = [notification valueForKey:@"_displayStyle"];
+
+    ViewController* controller = (ViewController *)[[NSApplication sharedApplication] mainWindow].contentViewController;
+    [controller logMessage:[NSString stringWithFormat:@"Notification Clicked: Display Style - %@, Activation type %ld",
+                            display_style,  (long)notification.activationType]];
 }
 
 - (void)userNotificationCenter:(NSUserNotificationCenter *)arg1 didDismissAlert:(NSUserNotification *)notification {
     NSLog(@"Notification dismissed %@", notification.title);
-    
+
     NSNumber* display_style = [notification valueForKey:@"_displayStyle"];
     NSNumber* style = [notification valueForKey:@"_style"];
     NSLog(@"STYLE VALUE %@", style);
     NSLog(@"DISPLAY Style VALUE %@", display_style);
+
+    NSApplication* application = [NSApplication sharedApplication];
+
+    ViewController* controller = (ViewController *)[[NSApplication sharedApplication] mainWindow].contentViewController;
+    [controller logMessage:[NSString stringWithFormat:@"Notification Closed: Display Style - %@",
+                            display_style]];
 }
 
 
