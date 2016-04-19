@@ -36,7 +36,7 @@ struct InternalFrames {
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     NSUserNotificationCenter* center =
-    [NSUserNotificationCenter _centerForIdentifier:[[NSBundle mainBundle] bundleIdentifier]  type:0x0];
+    [NSUserNotificationCenter _centerForIdentifier:@"com.google.NotificationTest.banners" type:0x0];
     [center setDelegate:self];
 }
 
@@ -66,6 +66,7 @@ struct InternalFrames {
     NSLog(@"activated index %@", [notification valueForKey:@"_alternateActionIndex"]);
 
     NSNumber* display_style = [notification valueForKey:@"_displayStyle"];
+    NSLog(@"style %@", [notification valueForKey:@"_style"]);
 
     ViewController* controller = (ViewController *)[[NSApplication sharedApplication] mainWindow].contentViewController;
     [controller logMessage:[NSString stringWithFormat:@"Notification Clicked: Display Style - %@, Activation type %ld",

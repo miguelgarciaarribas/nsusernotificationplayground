@@ -20,8 +20,10 @@
 @property (weak) IBOutlet NSTextField *tagBox;
 @property (weak) IBOutlet NSButton *shouldRenotify;
 @property (weak) IBOutlet NSButton *shouldDelay;
+@property (weak) IBOutlet NSButton *requireInteraction;
 @property (weak) IBOutlet NSTextField *eventLog;
 
+@property NSXPCConnection* connection;
 
 @end
 
